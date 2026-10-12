@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f5">
+  <meta name="description" content="MaintainIQ helps teams record equipment faults, track repairs, and understand maintenance activity.">
+  <title>MaintainIQ — Plant Care Workspace</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="mobile-scrim" id="mobileScrim" hidden></div>
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" data-view="overview" aria-label="MaintainIQ overview">
+        <span class="brand-symbol" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none"><path d="M8 35V19l9 5V13l8 5V7h11v28H8Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M14 30h4m4 0h4m4 0h4M16 35v-5m8 5v-5m8 5v-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M26 11h5" stroke="#F17C61" stroke-width="3" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-text"><strong>maintain<span>iq</span></strong><small>PLANT CARE WORKSPACE</small></span>
+      </a>
+
+      <div class="sidebar-section-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Workspace pages">
+        <button class="nav-link active" type="button" data-view="overview" aria-current="page">
+          <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="4.5" rx="1.5"/><rect x="13.5" y="11" width="7" height="9.5" rx="1.5"/><rect x="3.5" y="13" width="7" height="7.5" rx="1.5"/></svg></span>
+          <span>Overview</span><span class="nav-current-dot" aria-hidden="true"></span>
+        </button>
+        <button class="nav-link" type="button" data-view="tickets">
+          <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h14A1.5 1.5 0 0 1 20.5 6v3a3 3 0 0 0 0 6v3a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18v-3a3 3 0 0 0 0-6V6A1.5 1.5 0 0 1 5 4.5Z"/><path d="M9 8h6m-6 4h6m-6 4h3"/></svg></span>
+          <span>Work orders</span><span class="nav-count" id="sidebarOpenCount">0</span>
+        </button>
+        <button class="nav-link" type="button" data-view="machines">
+          <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20V9.5l5 2.8V8l5 2.8V4h7v16Z"/><path d="M7 16h2m3 0h2m3 0h2M7 20v-4m5 4v-4m5 4v-4"/></svg></span>
+          <span>Equipment</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-section-label">QUICK INSIGHT</div>
+      <section class="sidebar-insight" aria-label="Maintenance tip">
+        <div class="insight-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="insight-copy"><strong>Small signals matter.</strong><p>Log a fault early to make the next repair easier to plan.</p></div>
+      </section>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.5-3.1 7.6-7 9-3.9-1.4-7-4.5-7-9V6l7-2.5Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div><strong>Local by design</strong><span>Records stay in this browser</span></div>
+        <span class="online-dot" title="Local workspace" aria-label="Local workspace"></span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-button icon-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+          <div class="breadcrumbs"><span>Plant workspace</span><span class="breadcrumb-slash">/</span><strong id="currentPageName">Overview</strong></div>
+        </div>
+        <div class="topbar-actions">
+          <span class="local-status"><span aria-hidden="true"></span> Local workspace</span>
+          <button class="button button-primary" id="topAddButton" type="button"><span class="button-plus" aria-hidden="true">+</span><span>New work order</span></button>
+          <button class="avatar-button" id="profileButton" type="button" aria-label="Workspace information" title="Workspace information">MO</button>
+        </div>
+      </header>
+
+      <div class="page-shell">
+        <!-- Overview -->
+        <section class="view-section active" id="overviewView" data-section="overview" aria-labelledby="overviewTitle">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> PLANT OPERATIONS</div>
+              <h1 id="overviewTitle">Keep the line <span>moving.</span></h1>
+              <p class="page-subtitle">A practical view of your equipment, open repairs, and what's ready to move forward.</p>
+            </div>
+            <div class="heading-meta"><span class="meta-pulse" aria-hidden="true"></span><span>Workspace updated from your records</span></div>
+          </div>
+
+          <section class="hero-panel" aria-label="Maintenance introduction">
+            <div class="hero-text">
+              <span class="hero-label"><span class="hero-label-dot"></span> MAINTENANCE, MADE CLEAR</span>
+              <h2>Every issue has<br><em>a next step.</em></h2>
+              <p>Capture equipment faults, make priorities visible, and keep each repair moving from report to resolution.</p>
+              <div class="hero-buttons"><button class="button button-hero" id="heroAddButton" type="button">Report an equipment issue <span aria-hidden="true">↗</span></button><span class="hero-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg> Clear records, less guesswork</span></div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+              <div class="visual-grid"></div>
+              <div class="visual-ring ring-large"></div><div class="visual-ring ring-small"></div>
+              <svg class="visual-machine" viewBox="0 0 300 235" fill="none">
+                <path d="M42 194V105l45 20V86l44 22V58h122v136H42Z" fill="#fff" fill-opacity=".08" stroke="#E8F5EE" stroke-opacity=".88" stroke-width="3.5" stroke-linejoin="round"/>
+                <path d="M151 83h18m13 0h18m-49 22h18m13 0h18M62 159h17m15 0h17m-49 35v-35m32 35v-35m32 35v-35m44 35v-28h34v28" stroke="#C8E7DB" stroke-width="3.5" stroke-linecap="round"/>
+                <rect x="187" y="28" width="47" height="47" rx="15" fill="#F4C85F" transform="rotate(7 187 28)"/><path d="m199 51 7 7 14-16" stroke="#4D5141" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="58" cy="71" r="5" fill="#F17C61"/><circle cx="238" cy="141" r="4" fill="#F4C85F"/><circle cx="119" cy="45" r="3" fill="#B5E3D4"/>
+              </svg>
+              <div class="floating-note note-resolved"><span class="note-icon coral-icon"><svg viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span><span><strong id="heroResolvedRate">0%</strong><small>Resolution rate</small></span></div>
+              <div class="floating-note note-open"><span class="note-icon yellow-icon">!</span><span><strong id="heroOpenCount">0 open</strong><small>Need attention</small></span></div>
+              <span class="visual-spark spark-one"></span><span class="visual-spark spark-two"></span><span class="visual-spark spark-three"></span>
+            </div>
+          </section>
+
+          <div class="metrics-grid" id="statsGrid" aria-label="Work order summary"></div>
+
+          <div class="content-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> MAINTENANCE PULSE</div><h2>What the records are telling you</h2></div><p>Charts respond to the work orders in this browser.</p></div>
+          <div class="insights-grid">
+            <section class="surface-card activity-card">
+              <div class="card-heading"><div><h3>Work order activity</h3><p>Reports recorded across the last 7 days</p></div><span class="chart-chip"><span></span> Daily trend</span></div>
+              <div class="activity-summary"><strong id="weekTotal">0</strong><span>orders this week</span><span class="summary-separator"></span><span class="summary-note" id="weekComparison">No recent activity</span></div>
+              <div class="activity-chart" id="activityChart" role="img" aria-label="Line chart showing work order counts for the last seven days"></div>
+              <div class="chart-caption"><span></span> Based on each work order's report date</div>
+            </section>
+            <section class="surface-card priority-card">
+              <div class="card-heading"><div><h3>Issue priorities</h3><p>How urgent the current work is</p></div><span class="card-glyph priority-glyph" aria-hidden="true">◒</span></div>
+              <div class="priority-chart-layout"><div class="priority-donut" id="priorityDonut" role="img" aria-label="Donut chart showing issue priority distribution"><div class="donut-center"><strong id="priorityTotal">0</strong><span>orders</span></div></div><div class="priority-legend" id="priorityLegend"></div></div>
+              <div class="priority-callout" id="priorityInsight"><span class="callout-star" aria-hidden="true">✳</span><span>Add work orders to see priority insights.</span></div>
+            </section>
+            <section class="surface-card workload-card">
+              <div class="card-heading"><div><h3>Workload by status</h3><p>Every ticket has a clear next step</p></div><span class="card-glyph status-glyph" aria-hidden="true">≋</span></div>
+              <div class="workload-bars" id="statusBars"></div>
+              <div class="workload-footer"><span class="footer-check" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span><span id="statusInsight">A live summary of current repair work.</span></div>
+            </section>
+          </div>
+
+          <section class="surface-card recent-card">
+            <div class="recent-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> LATEST WORK</div><h2>Recently reported</h2><p>Quick access to the newest equipment issues.</p></div><button class="button button-secondary" type="button" data-view="tickets">See all work orders <span aria-hidden="true">→</span></button></div>
+            <div class="table-scroll"><table class="data-table"><thead><tr><th>Work order</th><th>Priority</th><th>Status</th><th>Reported</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="recentTicketRows"></tbody></table></div>
+            <div class="empty-state hidden" id="recentEmpty"><span class="empty-symbol">＋</span><strong>No work orders yet</strong><p>Report your first equipment issue to get started.</p><button class="button button-primary" type="button" data-action="add">Report an issue</button></div>
+          </section>
+        </section>
+
+        <!-- Work orders -->
+        <section class="view-section" id="ticketsView" data-section="tickets" aria-labelledby="ticketsTitle" hidden>
+          <div class="page-heading ticket-page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-line"></span> REPAIR QUEUE</div><h1 id="ticketsTitle">Work <span>orders.</span></h1><p class="page-subtitle">Keep every reported issue organized, assigned, and moving toward resolution.</p></div>
+            <button class="button button-primary" id="ticketsAddButton" type="button"><span class="button-plus" aria-hidden="true">+</span> New work order</button>
+          </div>
+          <div class="queue-summary" id="queueSummary"></div>
+          <section class="surface-card queue-card">
+            <div class="queue-toolbar"><div class="queue-title"><h2>All work orders</h2><span class="result-count" id="ticketResultCount">0 records</span></div><div class="queue-controls"><label class="search-control"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="ticketSearch" type="search" placeholder="Search machine or issue" autocomplete="off"><span class="sr-only">Search work orders</span></label><label class="filter-control"><span class="sr-only">Filter by priority</span><select id="priorityFilter"><option value="all">All priorities</option><option value="High">High priority</option><option value="Medium">Medium priority</option><option value="Low">Low priority</option></select></label><label class="filter-control"><span class="sr-only">Filter by status</span><select id="statusFilter"><option value="all">All statuses</option><option value="Open">Open</option><option value="In Progress">In progress</option><option value="Resolved">Resolved</option></select></label><button class="button button-tertiary" id="clearFiltersButton" type="button">Reset</button></div></div>
+            <div class="table-scroll"><table class="data-table queue-table"><thead><tr><th>Work order / equipment</th><th>Priority</th><th>Assigned to</th><th>Target date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="ticketRows"></tbody></table></div>
+            <div class="empty-state hidden" id="ticketsEmpty"><span class="empty-symbol">⌕</span><strong id="ticketsEmptyTitle">No work orders found</strong><p id="ticketsEmptyText">Try changing the search or filter values.</p><button class="button button-secondary" id="emptyResetButton" type="button">Clear filters</button></div>
+            <div class="queue-footer"><span id="queueFooterText">Showing all work orders</span><button class="text-button" id="exportButton" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"/></svg> Export CSV</button></div>
+          </section>
+          <div class="queue-note"><span class="note-shield" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.5-3.1 7.6-7 9-3.9-1.4-7-4.5-7-9V6l7-2.5Z"/></svg></span><span><strong>Your records stay on this device.</strong> This demo stores work orders in your browser and does not send them to a server.</span><button id="restoreSamplesButton" class="text-button" type="button">Restore demo records</button></div>
+        </section>
+
+        <!-- Equipment -->
+        <section class="view-section" id="machinesView" data-section="machines" aria-labelledby="machinesTitle" hidden>
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-line"></span> EQUIPMENT DIRECTORY</div><h1 id="machinesTitle">Know your <span>equipment.</span></h1><p class="page-subtitle">A single view of the machines appearing in your maintenance records.</p></div>
+            <button class="button button-primary" type="button" data-action="add"><span class="button-plus" aria-hidden="true">+</span> Report a fault</button>
+          </div>
+          <div class="equipment-intro" id="equipmentSummary"></div>
+          <div class="equipment-toolbar"><label class="search-control"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="machineSearch" type="search" placeholder="Find equipment by name or ID" autocomplete="off"><span class="sr-only">Search equipment</span></label><span id="machineCount" class="result-count">0 machines</span></div>
+          <div class="equipment-grid" id="machineGrid"></div>
+          <div class="empty-state hidden equipment-empty" id="machinesEmpty"><span class="empty-symbol">⌕</span><strong>No equipment found</strong><p>Try another name or machine ID.</p></div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>MaintainIQ <span class="footer-dot">·</span> Plant care workspace</span><span>Built for clearer maintenance decisions</span></footer>
+    </main>
+  </div>
+
+  <!-- Create/edit work order modal -->
+  <div class="modal-backdrop" id="ticketModal" hidden>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <div class="modal-header"><div><div class="eyebrow"><span class="eyebrow-line"></span> WORK ORDER</div><h2 id="modalTitle">Report an issue</h2><p id="modalDescription">Capture the details so the team knows what needs attention.</p></div><button class="modal-close icon-button" id="modalCloseButton" type="button" aria-label="Close form"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <form id="ticketForm" novalidate>
+        <input type="hidden" id="editingTicketId" value="">
+        <div class="form-grid">
+          <label class="form-field"><span>Machine ID <b>*</b></span><input id="machineIdInput" name="machineId" required maxlength="24" placeholder="e.g. CNC-01"><small class="field-error" id="machineIdError"></small></label>
+          <label class="form-field"><span>Machine name <b>*</b></span><input id="machineNameInput" name="machineName" required maxlength="60" placeholder="e.g. CNC Milling Machine"><small class="field-error" id="machineNameError"></small></label>
+          <label class="form-field form-field-wide"><span>Issue description <b>*</b></span><textarea id="issueInput" name="issue" rows="3" required maxlength="240" placeholder="Describe the fault or unusual behavior..."></textarea><small class="field-error" id="issueError"></small></label>
+          <label class="form-field"><span>Priority <b>*</b></span><select id="priorityInput" name="priority" required><option value="High">High — urgent attention</option><option value="Medium" selected>Medium — planned repair</option><option value="Low">Low — monitor or schedule</option></select></label>
+          <label class="form-field"><span>Status</span><select id="statusInput" name="status"><option value="Open">Open</option><option value="In Progress">In progress</option><option value="Resolved">Resolved</option></select></label>
+          <label class="form-field"><span>Assigned technician</span><input id="technicianInput" name="technician" maxlength="60" placeholder="e.g. A. Mehta (optional)"></label>
+          <label class="form-field"><span>Target date</span><input id="dueDateInput" name="dueDate" type="date"><small class="field-hint">Optional repair target</small></label>
+        </div>
+        <div class="modal-footer"><span class="required-note"><b>*</b> Required fields</span><div class="modal-actions"><button class="button button-secondary" id="cancelModalButton" type="button">Cancel</button><button class="button button-primary" id="saveTicketButton" type="submit">Save work order <span aria-hidden="true">→</span></button></div></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+  <noscript><div class="noscript-message">MaintainIQ needs JavaScript enabled to manage work orders and update the charts.</div></noscript>
+</body>
+</html>
